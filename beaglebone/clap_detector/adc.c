@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define ADC_FILE "/sys/devices/ocp.2/helper.14/AIN_"
+#define ADC_FILE "/sys/devices/ocp.3/helper.15/AIN_"
 
 int adc_read(int adc_idx, int *ok) {
     if(adc_idx < 0 || adc_idx > 7) {
