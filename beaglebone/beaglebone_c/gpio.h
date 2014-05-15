@@ -1,6 +1,9 @@
 #ifndef _GPIO_H_
 #define _GPIO_H_
 
+#include <stdlib.h>
+#include <stdio.h>
+
 typedef enum {
     READ,
     WRITE
