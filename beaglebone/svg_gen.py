@@ -134,17 +134,18 @@ def render_weather(dwg, position):
     dwg.add(text_elem)
 
 
-dwg = svgwrite.Drawing('kindle_display.svg', size=DEVICE_SIZE)
-dwg.add(dwg.rect(insert=(0, 0), size=DEVICE_SIZE, fill='white'))
+def get_svg():
+    dwg = svgwrite.Drawing(size=DEVICE_SIZE)
+    dwg.add(dwg.rect(insert=(0, 0), size=DEVICE_SIZE, fill='white'))
 
-render_time(dwg)
+    render_time(dwg)
 
-points1 = map(lambda x: math.sin(x*0.1), range(0, 300))
-points2 = map(lambda x: math.sin(x*0.05), range(0, 300))
-render_charts(dwg, [points1, points2], ["Relative Humidity", "Temperature"])
+    points1 = map(lambda x: math.sin(x*0.1), range(0, 300))
+    points2 = map(lambda x: math.sin(x*0.05), range(0, 300))
+    render_charts(dwg, [points1, points2], ["Relative Humidity", "Temperature"])
 
-render_measurement(dwg, "RH: 42%   Temp: 65°F", 1, 0, HEADER_HEIGHT + 25 + MARGIN)
+    render_measurement(dwg, "RH: 42%   Temp: 65°F", 1, 0, HEADER_HEIGHT + 25 + MARGIN)
 
-render_weather(dwg, (0, MARGIN + HEADER_HEIGHT + MEASUREMENT_HEIGHT + 100))
+    render_weather(dwg, (0, MARGIN + HEADER_HEIGHT + MEASUREMENT_HEIGHT + 100))
 
-dwg.save()
+    return dwg.tostring().encode("utf-8")
